@@ -2,8 +2,7 @@ const { TRANSACTION_TYPES } = require("../constants");
 const transactionService = require("../services/transactionService");
 const BadRequestApiError = require("../errors/badRequestApiError");
 
-// Facade functions for transaction management
-async function addTransaction(type, amount) {
+const addTransaction = async (type, amount) => {
   if (!Object.values(TRANSACTION_TYPES).includes(type)) {
     throw new BadRequestApiError(
       "Invalid transaction type. Please use debit or credit."
@@ -11,9 +10,9 @@ async function addTransaction(type, amount) {
   }
   const transaction = await transactionService.addTransaction(type, amount);
   return transaction;
-}
+};
 
-async function getDailyBalance() {
+const getDailyBalance = async () => {
   const dailyTransactions = await transactionService.getDailyTransactions();
 
   const initialValue = 0;
@@ -38,7 +37,7 @@ async function getDailyBalance() {
     totalCredits,
     consolidatedBalance,
   };
-}
+};
 
 module.exports = {
   addTransaction,

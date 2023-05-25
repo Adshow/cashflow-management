@@ -1,9 +1,9 @@
 const express = require("express");
+require("express-async-errors");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const transactionRoutes = require("./routes/transactionRoutes");
 const connectDB = require("./config/database");
-require("express-async-errors");
 const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
